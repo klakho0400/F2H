@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<body>
+    <h1 style="text-align : center ; color: blue ; margin-top: 5rem; font-family: Times New Roman, Times, serif">Sign up!</h1>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+
+
+        <center>
+            <p><i class='fas fa-user-alt'></i> Username: {{ form.username }}</p>
+            <p><i class="fas fa-key"></i> Password: {{ form.password1 }}</p>
+            <p><i class="fas fa-key"></i>Password: {{ form.password2 }}</p>
+            <input type="submit" value="Register">
+        </center>
+        {% if form.errors %}
+          {{ form.helptext }}
+        {% endif %}
+
+
+    </form>
+</body>
+</html>

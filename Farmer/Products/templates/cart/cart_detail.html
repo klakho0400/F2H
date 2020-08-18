@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <u><h1 style="text-align : center">Cart</h1></u><center>
+    {% load cart_tag %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <b><h5 style="margin-top: 2rem">Total Items = {{request.session.cart|length}} </h5></b>
+    <br>
+
+    Cart Detail:
+    <br>
+    {% for key,value in request.session.cart.items %}
+    item = {{value.name}} price = {{value.price}} quantity = {{value.quantity}}
+    <a href="{% url 'item_increment' value.product_id %}">
+        <button>Incr by .25</button>
+    </a>
+    <a href="{% url 'item_increment1' value.product_id %}">
+        <button>Incr by 1</button>
+    </a>
+    <a href="{% url 'item_increment10' value.product_id %}">
+        <button>Incr by 10</button>
+    </a>
+    <a href="{% url 'item_decrement' value.product_id %}">
+    <button>Decr by .25</button>
+    </a>
+    <a href="{% url 'item_decrement1' value.product_id %}">
+    <button>Decr by 1</button>
+    </a>
+    <a href="{% url 'item_decrement10' value.product_id %}">
+    <button>Decr by 10</button>
+    </a>
+    <br>
+    Sub Total {{ value.price|multiply:value.quantity }}
+    <br>
+
+    {% endfor %}
+
+    <h2>Total = {{ p }}</h2>
+    <a href="{% url 'cart_clear' %}">Clear Cart</a>
+
+
+    <br/>
+
+
+    <a href="/">
+        <button>Go back to products</button>
+    </a>
+    </center>
